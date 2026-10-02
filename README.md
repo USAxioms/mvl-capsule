@@ -2,6 +2,11 @@
 
 Executable derivative of the **Foundational Canonical Specification for Machine-Verifiable Law** (Universal Standard Axiom Corporation, October 2026). Under the specification's derivation rule, this capsule is *executable evidence of a defined canonical procedure*. It carries no authority of its own, and its results apply only within the tested domain.
 
+## Citations & Resources
+* **Preprint DOI:** [10.13140/RG.2.2.25198.57928](https://dx.doi.org/10.13140/RG.2.2.25198.57928)
+* **ORCID:** [0009-0001-3360-6709](https://orcid.org/0009-0001-3360-6709)
+* **GitHub Repository:** [https://github.com/USAxioms/mvl-capsule.git
+
 BEGIN WITH PURPOSE. END IN TRUTH.
 
 ## Layout
