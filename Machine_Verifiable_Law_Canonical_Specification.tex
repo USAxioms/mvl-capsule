@@ -1,0 +1,2597 @@
+\documentclass[11pt]{article}
+
+% ============================================================
+% FOUNDATIONAL CANONICAL SPECIFICATION
+% MACHINE-VERIFIABLE LAW
+% R3 / MDM FIXED-POINT REVISION
+% ============================================================
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage[expansion=false]{microtype}
+\usepackage[T1]{fontenc}
+\IfFileExists{lmodern.sty}{\usepackage{lmodern}}{}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=blue,
+    pdftitle={Foundational Canonical Specification for Machine-Verifiable Law},
+    pdfauthor={Universal Standard Axiom Corporation},
+    pdfsubject={
+        Machine-Verifiable Law, Recursive Pursuit of Absolute Truth,
+        Meta-Dynamical Mathematics, Canonical Verification
+    }
+}
+
+% ============================================================
+% CANONICAL MACROS
+% ============================================================
+
+\newcommand{\Rthree}{\ensuremath{\mathsf{R}^{3}}}
+\newcommand{\MDM}{\ensuremath{\mathrm{MDM}}}
+\newcommand{\MVL}{\ensuremath{\mathrm{MVL}}}
+\newcommand{\WAD}{\ensuremath{\mathrm{WAD\mbox{-}18}}}
+\newcommand{\CSL}{\ensuremath{\mathrm{CSL}}}
+\newcommand{\SAC}{\ensuremath{\mathrm{SAC}}}
+
+\newcommand{\Purpose}{\mathcal{U}}
+\newcommand{\Authority}{\mathcal{A}}
+\newcommand{\Evidence}{\mathcal{E}}
+\newcommand{\Inv}{\mathcal{I}}
+\newcommand{\State}{\mathcal{S}}
+\newcommand{\Law}{\mathcal{L}}
+\newcommand{\Prov}{\mathcal{P}}
+\newcommand{\Truth}{\mathcal{T}}
+\newcommand{\Rule}{\mathcal{R}}
+\newcommand{\Spec}{\mathcal{C}}
+\newcommand{\Derive}{\mathsf{Derive}}
+\newcommand{\Verify}{\mathsf{Verify}}
+\newcommand{\Refine}{\mathsf{Refine}}
+\newcommand{\Sem}{\mathsf{Sem}}
+\newcommand{\Accept}{\mathsf{ACCEPT}}
+\newcommand{\Reject}{\mathsf{REJECT}}
+\newcommand{\Unknown}{\mathsf{UNVERIFIED}}
+\newcommand{\Obligation}{\mathsf{OBLIGATION}}
+\newcommand{\Fixed}{\mathsf{Fix}}
+\newcommand{\Domain}{\mathcal{D}}
+\newcommand{\CCIO}{\ensuremath{\mathrm{CCIO}}}
+
+% ============================================================
+% THEOREM ENVIRONMENTS
+% ============================================================
+
+\newtheorem{axiom}{Axiom}
+\newtheorem{definition}{Definition}
+\newtheorem{principle}{Principle}
+\newtheorem{proposition}{Proposition}
+\newtheorem{requirement}{Requirement}
+
+% ============================================================
+% TITLE
+% ============================================================
+
+\title{
+    \textbf{Foundational Canonical Specification}\\
+    \large Machine-Verifiable Law\\[0.5em]
+    \normalsize
+    Recursive Pursuit of Absolute Truth,
+    Meta-Dynamical Mathematics,
+    Invariants, Verification, and Canonical State Derivation
+}
+
+\author{
+    Universal Standard Axiom Corporation\\
+    R\&D Division\\
+    Foundational Canonical Specification
+}
+
+\date{October 2026}
+
+% ============================================================
+% DOCUMENT
+% ============================================================
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+\Large
+\textbf{BEGIN WITH PURPOSE. END IN TRUTH.}
+\end{center}
+
+\vspace{1em}
+
+\begin{center}
+\fbox{
+\parbox{0.90\textwidth}{
+\textbf{Canonical Status.}
+This document defines the canonical semantic specification for
+Machine-Verifiable Law (\MVL{}). It establishes the definitions,
+relationships, invariants, state model, verification semantics,
+provenance requirements, refinement procedure, and derivation
+rules from which authorized formal, computational, conversational,
+executable, and cryptographic representations may be produced.
+
+No derivative representation shall silently alter the semantic
+content, authority structure, invariant structure, or verification
+semantics established here.
+}}
+\end{center}
+
+\tableofcontents
+\newpage
+
+% ============================================================
+\section{Purpose and Governing Direction}
+% ============================================================
+
+The purpose of Machine-Verifiable Law (\MVL{}) is to establish a
+general formal architecture through which authorized normative
+intent, applicable rules, invariants, evidence, provenance, state,
+and state transitions may be represented and evaluated by
+machines in an explicit, reproducible, auditable, and
+appropriately deterministic manner.
+
+The governing direction is:
+
+\[
+\boxed{
+\Purpose
+\longrightarrow
+\Rthree
+\longrightarrow
+\MDM
+\longrightarrow
+\Inv
+\longrightarrow
+\Law
+\longrightarrow
+\Verify
+\longrightarrow
+\Truth
+}
+\]
+
+The architecture begins with purpose because computation does not
+by itself establish what a result is intended to mean.
+
+The architecture ends in truth because an internally consistent
+computation is not sufficient to establish that the resulting
+state satisfies the intended and authorized conditions.
+
+Accordingly:
+
+\[
+\boxed{
+\textbf{BEGIN WITH PURPOSE. END IN TRUTH.}
+}
+\]
+
+This statement is the governing direction of the specification.
+
+It is not merely descriptive language.
+
+It establishes the order in which purpose, refinement,
+mathematical representation, invariant formation, formalization,
+verification, and truth-constrained state are related.
+
+% ============================================================
+\section{Scope}
+% ============================================================
+
+This specification defines:
+
+\begin{enumerate}[label=\arabic*.]
+    \item the semantic foundations of Machine-Verifiable Law;
+    \item the canonical relationship between purpose, authority,
+          evidence, \Rthree{}, \MDM{}, invariants, law, state,
+          verification, and truth;
+    \item \Rthree{} as Recursive Pursuit of Absolute Truth;
+    \item \MDM{} as the structural mathematical reference layer;
+    \item the representation of applicable law as formal constraints
+          upon admissible states and transitions;
+    \item the canonical state and verification models;
+    \item provenance and reproducibility requirements;
+    \item fail-closed semantics for unresolved mandatory conditions;
+    \item cross-domain structural correspondence;
+    \item canonical fixed-point and convergence semantics;
+    \item semantic-preservation requirements for derivative artifacts;
+    \item controlled derivation into formal, conversational,
+          executable, and provenance representations.
+\end{enumerate}
+
+The specification is domain-independent.
+
+A domain may provide its own substantive rules, variables,
+authorities, evidence, and invariants while conforming to the
+common structural architecture defined herein.
+
+The common architecture does not imply identical substantive
+rules across domains.
+
+% ============================================================
+\section{Canonical Semantic Root}
+% ============================================================
+
+\begin{definition}[Canonical Semantic Root]
+The \emph{Canonical Semantic Root} is the authoritative semantic
+specification from which all authorized derivative
+representations are derived.
+\end{definition}
+
+The canonical specification is represented by:
+
+\[
+\boxed{
+\Spec =
+(
+\Purpose,
+\Authority,
+\Evidence,
+\Inv,
+\Law,
+\State,
+\Verify,
+\Prov,
+v
+)
+}
+\]
+
+where:
+
+\begin{align*}
+\Purpose &= \text{declared purpose},\\
+\Authority &= \text{authorized normative source and authority structure},\\
+\Evidence &= \text{evidentiary basis},\\
+\Inv &= \text{canonical invariant set},\\
+\Law &= \text{formalized applicable law},\\
+\State &= \text{defined state space},\\
+\Verify &= \text{verification semantics},\\
+\Prov &= \text{provenance structure},\\
+v &= \text{canonical version}.
+\end{align*}
+
+The canonical specification is therefore not merely a document,
+file, program, database record, or hash.
+
+It is the semantic object represented by the controlled
+canonical artifact.
+
+A particular file format may encode that object, but the encoding
+shall not be confused with the semantic root itself.
+
+% ============================================================
+\section{Canonical Identity}
+% ============================================================
+
+Every canonical object shall possess a stable identity.
+
+Let:
+
+\[
+id(C)
+\]
+
+denote the canonical identity of specification object $C$.
+
+A versioned canonical object is:
+
+\[
+C_v=(id,v,\Sem(C),\Prov(C)).
+\]
+
+The canonical identity shall remain stable across derivative
+representations unless the canonical semantic object itself is
+formally superseded.
+
+A change to canonical meaning constitutes a canonical revision.
+
+A change to representation without a change in canonical meaning
+constitutes a derivative revision.
+
+Therefore:
+
+\[
+\boxed{
+\text{Representation Change}
+\neq
+\text{Semantic Change}
+}
+\]
+
+unless semantic comparison establishes otherwise.
+
+% ============================================================
+\section{Foundational Definitions}
+% ============================================================
+
+\begin{definition}[Purpose]
+Purpose is the explicitly declared intended objective that
+establishes why a law, invariant, system, action, state, or
+transition exists.
+\end{definition}
+
+\begin{definition}[Authority]
+Authority is the legitimate source or authorization structure
+under which a normative rule is established, adopted, modified,
+or applied.
+\end{definition}
+
+\begin{definition}[Machine-Verifiable Law]
+Machine-Verifiable Law is law represented with sufficient formal
+structure that an authorized verification mechanism can evaluate
+whether a specified state or transition satisfies the applicable
+formal constraints within a declared verification domain.
+\end{definition}
+
+\begin{definition}[State]
+A state is a formally representable configuration of relevant
+entities, values, relationships, permissions, conditions,
+evidence, and provenance at a specified point or transition.
+\end{definition}
+
+\begin{definition}[Invariant]
+An invariant is a formally represented condition that must remain
+satisfied for a state or transition to be admissible under the
+applicable canonical specification.
+\end{definition}
+
+\begin{definition}[Verification]
+Verification is the evaluation of a specified state or transition
+against the formally defined conditions that determine its
+verification status.
+\end{definition}
+
+\begin{definition}[R\textsuperscript{3}]
+\Rthree{} denotes \emph{Recursive Pursuit of Absolute Truth}.
+
+It is the recursive refinement operator by which purpose,
+definitions, assumptions, evidence, provenance, rules,
+invariants, states, representations, contradictions, and
+conclusions are examined and reconciled until either a
+truth-constrained fixed point is reached or one or more
+mandatory conditions remain unresolved.
+\end{definition}
+
+\begin{definition}[Meta-Dynamical Mathematics]
+\MDM{} is the mathematical reference framework used to represent
+relationships among states, transformations, invariants,
+observations, mappings, and fixed points across domains.
+\end{definition}
+
+\begin{definition}[Fixed Point]
+For an operator $F$ acting upon a specified state space, a fixed
+point is a state $X^{*}$ satisfying:
+
+\[
+F(X^{*})=X^{*}.
+\]
+
+For the canonical specification, an \Rthree{} fixed point is a
+canonical state whose materially relevant semantic, logical,
+structural, and verification properties remain unchanged under
+the declared refinement operator.
+\end{definition}
+
+\begin{definition}[Provenance]
+Provenance is the traceable record establishing the origin,
+authority, version, transformation history, and evidentiary basis
+of a canonical object, rule, state, or result.
+\end{definition}
+
+\begin{definition}[Reproducibility]
+Reproducibility is the property that equivalent canonical inputs,
+rules, versions, evidence, and declared execution conditions
+produce the same specified verification result.
+\end{definition}
+
+\begin{definition}[Semantic Preservation]
+Semantic preservation is the property that a derivative
+representation retains the canonical meaning applicable to its
+declared representational domain.
+\end{definition}
+
+% ============================================================
+\section{Foundational Axioms}
+% ============================================================
+
+\begin{axiom}[Purpose Precedes Consequential Computation]
+A consequential machine-verifiable process shall have an
+explicitly declared purpose before its consequential computation
+is accepted as meaningful.
+
+\[
+\boxed{
+\Purpose \prec \text{Consequential Computation}
+}
+\]
+\end{axiom}
+
+\begin{axiom}[Recursive Pursuit of Absolute Truth]
+The canonical refinement mechanism shall recursively examine
+purpose, definitions, assumptions, evidence, provenance, rules,
+invariants, state, representation, contradictions, and
+conclusions.
+
+\[
+\boxed{
+\Rthree{}=\text{Recursive Pursuit of Absolute Truth}
+}
+\]
+\end{axiom}
+
+\begin{axiom}[Explicit Invariants]
+Conditions upon which admissibility depends shall be explicitly
+represented rather than left solely to undocumented
+implementation interpretation.
+\end{axiom}
+
+\begin{axiom}[Authority]
+Normative meaning shall be traceable to an identified and
+authorized source.
+\end{axiom}
+
+\begin{axiom}[Provenance]
+Consequential claims, rules, states, transitions, and verification
+results shall have traceable provenance sufficient for their
+declared purpose.
+\end{axiom}
+
+\begin{axiom}[Reproducibility]
+A canonical verification result shall be reproducible from the
+canonical inputs and declared execution conditions applicable to
+that verification.
+\end{axiom}
+
+\begin{axiom}[No Hidden Consequential State]
+A consequential verification result shall not depend upon
+undocumented hidden state.
+\end{axiom}
+
+\begin{axiom}[Fail Closed]
+A mandatory condition that cannot be established shall not be
+silently converted into acceptance.
+
+\[
+\boxed{
+\Unknown\neq\Accept
+}
+\]
+\end{axiom}
+
+\begin{axiom}[Deterministic Verification]
+Where deterministic verification is specified, equivalent
+canonical inputs and execution conditions shall produce the same
+verification result.
+\end{axiom}
+
+\begin{axiom}[Semantic Preservation]
+Every conforming derivative representation shall preserve the
+canonical meaning applicable to its declared scope.
+\end{axiom}
+
+\begin{axiom}[No Silent Substitution]
+An implementation shall not silently substitute its own purpose,
+rule, invariant, interpretation, authority, or verification
+semantics for those established by the canonical specification.
+\end{axiom}
+
+\begin{axiom}[Auditability]
+A consequential result shall be traceable through its state,
+applicable rule, invariant, evidence, provenance, version, and
+authorized source.
+\end{axiom}
+
+\begin{axiom}[Truth-Constrained Acceptance]
+Acceptance requires satisfaction of every mandatory condition
+within the declared verification domain.
+\end{axiom}
+
+% ============================================================
+\section{Canonical Dependency Structure}
+% ============================================================
+
+The canonical dependency structure is:
+
+\[
+\boxed{
+\Purpose
+\rightarrow
+\Authority
+\rightarrow
+\Evidence
+\rightarrow
+\Rthree
+\rightarrow
+\MDM
+\rightarrow
+\Inv
+\rightarrow
+\Law
+\rightarrow
+\State
+\rightarrow
+\Verify
+\rightarrow
+\Truth
+}
+\]
+
+This ordering does not imply that every implementation executes
+each component sequentially.
+
+It establishes semantic dependency.
+
+In particular:
+
+\[
+\text{Verification}
+\]
+
+cannot independently determine:
+
+\[
+\text{Purpose}
+\]
+
+or:
+
+\[
+\text{Normative Authority}.
+\]
+
+Those must be supplied by the canonical specification.
+
+Likewise:
+
+\[
+\text{Deterministic Execution}
+\]
+
+cannot independently establish:
+
+\[
+\text{Semantic Correctness}.
+\]
+
+% ============================================================
+\section{Formal Model of Machine-Verifiable Law}
+% ============================================================
+
+A canonical law object is represented as:
+
+\[
+\boxed{
+\Law =
+(
+\Purpose,
+\Authority,
+\Evidence,
+\Inv,
+\State,
+\delta,
+\Verify,
+\Prov,
+v
+)
+}
+\]
+
+where:
+
+\begin{align*}
+\Purpose &= \text{declared purpose},\\
+\Authority &= \text{normative authority},\\
+\Evidence &= \text{evidentiary basis},\\
+\Inv &= \text{mandatory and conditional invariants},\\
+\State &= \text{state space},\\
+\delta &= \text{authorized state-transition relation},\\
+\Verify &= \text{verification function},\\
+\Prov &= \text{provenance},\\
+v &= \text{version}.
+\end{align*}
+
+The verification function is:
+
+\[
+\boxed{
+\Verify:
+\State\times\Law
+\rightarrow
+\{
+\Accept,\Reject,\Unknown
+\}.
+}
+\]
+
+For a state $S$:
+
+\[
+\Verify(S,\Law)=\Accept
+\]
+
+means that the state satisfies all mandatory verification
+conditions applicable within the declared domain.
+
+Likewise:
+
+\[
+\Verify(S,\Law)=\Reject
+\]
+
+means that at least one mandatory condition is affirmatively
+violated.
+
+Finally:
+
+\[
+\Verify(S,\Law)=\Unknown
+\]
+
+means that one or more mandatory conditions cannot presently be
+established as satisfied or violated.
+
+The three states are semantically distinct.
+
+% ============================================================
+\section{State-Transition Semantics}
+% ============================================================
+
+Let:
+
+\[
+S_t\in\State
+\]
+
+be a current state and:
+
+\[
+S_{t+1}\in\State
+\]
+
+a proposed subsequent state.
+
+The transition is represented by:
+
+\[
+S_t\xrightarrow{\delta}S_{t+1}.
+\]
+
+The transition is admissible only when:
+
+\[
+\boxed{
+\Verify(S_t\rightarrow S_{t+1},\Law)=\Accept.
+}
+\]
+
+The notation:
+
+\[
+\Verify(S_t\rightarrow S_{t+1},\Law)
+\]
+
+denotes verification of the transition itself, including all
+state-dependent and transition-dependent conditions.
+
+If a mandatory condition is affirmatively violated:
+
+\[
+\boxed{
+\Verify(S_t\rightarrow S_{t+1},\Law)=\Reject.
+}
+\]
+
+If a mandatory condition cannot be established:
+
+\[
+\boxed{
+\Verify(S_t\rightarrow S_{t+1},\Law)=\Unknown.
+}
+\]
+
+For a fail-closed consequential implementation:
+
+\[
+\boxed{
+\Verify\neq\Accept
+\Rightarrow
+\text{consequential transition not authorized by MVL}.
+}
+\]
+
+Any exception mechanism shall itself be part of the applicable
+canonical law and shall therefore be subject to verification.
+
+% ============================================================
+\section{Recursive Pursuit of Absolute Truth}
+% ============================================================
+
+Let:
+
+\[
+C_0
+\]
+
+be an initial canonical specification state.
+
+The recursive process is:
+
+\[
+C_0
+\xrightarrow{\Rthree}
+C_1
+\xrightarrow{\Rthree}
+C_2
+\xrightarrow{\Rthree}
+\cdots
+\]
+
+with:
+
+\[
+\boxed{
+C_{n+1}=\Rthree(C_n).
+}
+\]
+
+Each iteration shall examine, where applicable:
+
+\begin{enumerate}
+    \item purpose;
+    \item authority;
+    \item definitions;
+    \item assumptions;
+    \item evidence;
+    \item provenance;
+    \item logical consistency;
+    \item invariant completeness;
+    \item state representation;
+    \item transition semantics;
+    \item computational representation;
+    \item reproducibility;
+    \item semantic preservation;
+    \item contradictions;
+    \item unresolved obligations.
+\end{enumerate}
+
+The recursive process shall produce a revised state whenever a
+material defect is identified.
+
+A material defect includes, at minimum:
+
+\begin{enumerate}
+    \item contradiction;
+    \item semantic ambiguity affecting interpretation;
+    \item unsupported assertion presented as established;
+    \item missing mandatory dependency;
+    \item inconsistent mathematical typing;
+    \item inconsistent verification semantics;
+    \item hidden consequential state;
+    \item semantic drift between representations;
+    \item unresolved mandatory obligation incorrectly treated as
+          satisfied.
+\end{enumerate}
+
+% ============================================================
+\section{R3 Refinement Operator}
+% ============================================================
+
+The \Rthree{} operator is defined structurally as:
+
+\[
+\boxed{
+\Rthree:
+\mathfrak{C}\rightarrow\mathfrak{C}
+}
+\]
+
+where $\mathfrak{C}$ is the space of canonical specification
+states.
+
+For a canonical state $C$:
+
+\[
+\Rthree(C)
+=
+\Refine
+\left(
+C;
+\Purpose,
+\Authority,
+\Evidence,
+\Inv,
+\Law,
+\State,
+\Verify,
+\Prov
+\right).
+\]
+
+The operator shall:
+
+\begin{enumerate}
+    \item preserve established canonical meaning;
+    \item remove identified contradiction;
+    \item remove unsupported assumptions where they are not
+          authorized;
+    \item resolve definitional conflation;
+    \item expose unresolved obligations;
+    \item preserve provenance;
+    \item preserve authorized purpose;
+    \item preserve invariant intent;
+    \item preserve valid derivative relationships;
+    \item introduce no unverified semantic claim as established.
+\end{enumerate}
+
+The operator therefore has two simultaneous constraints:
+
+\[
+\boxed{
+\text{Defect Reduction}
+}
+\]
+
+and:
+
+\[
+\boxed{
+\text{Semantic Preservation}.
+}
+\]
+
+A refinement that removes a defect by changing canonical meaning
+without authorization is not a valid R³ refinement.
+
+% ============================================================
+\section{Fixed-Point Semantics}
+% ============================================================
+
+A canonical state $C^{*}$ is an \Rthree{} fixed point when:
+
+\[
+\boxed{
+\Rthree(C^{*})=C^{*}
+}
+\]
+
+with respect to the declared canonical comparison relation.
+
+Because textual changes may occur without semantic change, the
+fixed-point condition shall be evaluated semantically rather than
+by raw character equality.
+
+Define the canonical comparison relation:
+
+\[
+C_a\equiv_{\mathrm{can}} C_b
+\]
+
+when all materially relevant canonical properties are equivalent,
+including:
+
+\begin{enumerate}
+    \item purpose;
+    \item authority;
+    \item definitions;
+    \item invariants;
+    \item law semantics;
+    \item state semantics;
+    \item verification semantics;
+    \item provenance requirements;
+    \item derivative constraints.
+\end{enumerate}
+
+Then the operational fixed-point condition is:
+
+\[
+\boxed{
+\Rthree(C^{*})
+\equiv_{\mathrm{can}}
+C^{*}.
+}
+\]
+
+This prevents stylistic or representational changes from
+producing an artificial infinite refinement sequence.
+
+% ============================================================
+\section{Diminishing-Returns Boundary}
+% ============================================================
+
+Recursive refinement shall continue while a materially relevant
+defect remains.
+
+Let:
+
+\[
+\Delta(C_n,C_{n+1})
+\]
+
+denote the set of materially relevant canonical changes produced
+by an R³ iteration.
+
+The refinement process terminates when:
+
+\[
+\boxed{
+\Delta(C_n,C_{n+1})=\varnothing
+}
+\]
+
+with respect to the declared canonical comparison relation.
+
+Further changes that affect only:
+
+\begin{enumerate}
+    \item typography;
+    \item stylistic preference;
+    \item non-semantic ordering;
+    \item equivalent notation;
+    \item non-material wording;
+\end{enumerate}
+
+do not constitute a reason to continue R³ refinement of the
+canonical semantics.
+
+Thus:
+
+\[
+\boxed{
+\text{No Material Defect}
+\Rightarrow
+\text{Stop Refinement}.
+}
+\]
+
+This defines the boundary between convergence and diminishing
+returns.
+
+% ============================================================
+\section{Meta-Dynamical Mathematics}
+% ============================================================
+
+\MDM{} is the structural mathematical reference layer of the
+canonical architecture.
+
+It represents relationships among:
+
+\[
+\boxed{
+\text{State},
+\text{Transformation},
+\text{Invariant},
+\text{Observation},
+\text{Mapping},
+\text{Fixed Point}.
+}
+\]
+
+A domain $D_i$ may be represented as:
+
+\[
+D_i=(S_i,O_i,F_i,I_i),
+\]
+
+where:
+
+\begin{align*}
+S_i &= \text{domain state space},\\
+O_i &= \text{domain observations},\\
+F_i &= \text{domain transformations},\\
+I_i &= \text{domain invariants}.
+\end{align*}
+
+A common structural representation exists when a mapping:
+
+\[
+\phi_i:D_i\rightarrow M
+\]
+
+preserves the specified structures.
+
+For a transformation:
+
+\[
+f_i:S_i\rightarrow S_i,
+\]
+
+a structure-preserving representation satisfies:
+
+\[
+\boxed{
+\phi_i(f_i(x))
+=
+f_M(\phi_i(x))
+}
+\]
+
+within the declared mathematical representation.
+
+For an invariant:
+
+\[
+I_i(x)=\mathrm{true},
+\]
+
+the corresponding representation shall preserve the declared
+invariant relation:
+
+\[
+\boxed{
+I_i(x)
+\Rightarrow
+I_M(\phi_i(x)).
+}
+\]
+
+The exact preservation conditions shall be specified for each
+mapping.
+
+MDM therefore provides the reference structure through which
+different domains may be related without requiring their
+substantive content to be identical.
+
+% ============================================================
+\section{Cross-Domain Structural Correspondence}
+% ============================================================
+
+\begin{definition}[Cross-Domain Isomorphism]
+A cross-domain isomorphism is a structure-preserving mapping
+between formally represented domains for which the specified
+operations, relationships, and invariants are preserved under
+the mapping.
+\end{definition}
+
+Cross-domain isomorphism does not imply:
+
+\[
+D_A=D_B.
+\]
+
+It instead establishes correspondence:
+
+\[
+\boxed{
+D_A
+\xleftrightarrow{\phi}
+D_B
+}
+\]
+
+with respect to the specified structure.
+
+Therefore:
+
+\[
+\boxed{
+\text{Different Domain Substance}
+\neq
+\text{Different Mathematical Structure}.
+}
+\]
+
+The common MVL structural envelope is:
+
+\[
+\boxed{
+\Purpose
+\rightarrow
+\Inv
+\rightarrow
+\State
+\rightarrow
+\Verify
+\rightarrow
+\delta.
+}
+\]
+
+Domain-specific substance remains attached to the domain in which
+it is authorized.
+
+% ============================================================
+\section{WAD-18 Deterministic Representation}
+% ============================================================
+
+\WAD{} is a deterministic fixed-point arithmetic representation
+profile suitable for implementations requiring exact integer
+semantics within its declared numerical domain.
+
+A \WAD{} implementation may require:
+
+\begin{enumerate}
+    \item integer fixed-point representation;
+    \item no floating-point arithmetic in normative or verdict
+          modules;
+    \item explicit overflow handling;
+    \item explicit underflow handling where applicable;
+    \item explicit division-by-zero handling;
+    \item deterministic arithmetic;
+    \item explicit state;
+    \item fail-closed behavior for unresolved mandatory conditions.
+\end{enumerate}
+
+\WAD{} is not a necessary definition of \MVL{}.
+
+The canonical dependency is:
+
+\[
+\boxed{
+\Rthree{}
+\rightarrow
+\text{Invariant and Truth Pursuit}
+\rightarrow
+\text{Formal Representation}
+\rightarrow
+\text{Deterministic Implementation}.
+}
+\]
+
+One possible implementation path is:
+
+\[
+\boxed{
+\Rthree{}
+\rightarrow
+\MDM
+\rightarrow
+\WAD{}
+\rightarrow
+\text{Deterministic State Evaluation}.
+}
+\]
+
+Other exact mathematical representations may conform when they
+preserve the required canonical semantics.
+
+% ============================================================
+\section{Cognitive State Ledger}
+% ============================================================
+
+The Cognitive State Ledger (\CSL{}) provides a structured record
+for state, evidence, reasoning status, verification, and
+provenance.
+
+A canonical ledger record may be represented as:
+
+\[
+\boxed{
+\begin{gathered}
+\CSL=
+(
+id,
+purpose,
+authority,
+state,
+evidence,
+invariants,\\
+operations,
+result,
+provenance,
+version,
+authorization,
+obligations
+)
+\end{gathered}
+}
+\]
+
+The ledger shall distinguish at minimum:
+
+\begin{enumerate}
+    \item established facts;
+    \item derived propositions;
+    \item assumptions;
+    \item obligations;
+    \item verification results;
+    \item provenance records;
+    \item superseded states.
+\end{enumerate}
+
+An obligation shall not be silently represented as an established
+fact.
+
+% ============================================================
+\section{Human Intent and Custodial Authority}
+% ============================================================
+
+Machine verification does not independently determine the
+normative purpose for which a law or system exists.
+
+Human or otherwise legitimately authorized normative authority
+therefore precedes machine formalization.
+
+The canonical relationship is:
+
+\[
+\boxed{
+\text{Authorized Human Purpose}
+\rightarrow
+\text{Intent Specification}
+\rightarrow
+\Rthree{}
+\rightarrow
+\Inv
+\rightarrow
+\Law
+\rightarrow
+\Verify.
+}
+\]
+
+A Sovereign Custodian or Chief Custodial \& Invariant Officer
+(\CCIO{}) may be defined as a custodial role responsible for
+maintaining the authorized relationship among:
+
+\[
+\Purpose,\;
+Authority,\;
+\Inv,\;
+\Prov,\;
+\Law.
+\]
+
+The role may include:
+
+\begin{enumerate}
+    \item preserving canonical purpose;
+    \item maintaining invariant definitions;
+    \item maintaining authorization;
+    \item resolving semantic ambiguity through authorized process;
+    \item maintaining provenance;
+    \item approving canonical revisions;
+    \item ensuring derivative implementations remain semantically
+          aligned.
+\end{enumerate}
+
+Custodial authority does not replace formal verification.
+
+Formal verification does not replace legitimate normative
+authority.
+
+They are distinct layers of the architecture.
+
+% ============================================================
+\section{Machine-Verifiable Law Lifecycle}
+% ============================================================
+
+The canonical lifecycle is:
+
+\[
+\boxed{
+\begin{array}{c}
+\textbf{Purpose}\\
+\downarrow\\
+\textbf{Authority}\\
+\downarrow\\
+\textbf{Evidence}\\
+\downarrow\\
+\Rthree{}\\
+\downarrow\\
+\textbf{Invariant Extraction}\\
+\downarrow\\
+\MDM\\
+\downarrow\\
+\textbf{Formal Law}\\
+\downarrow\\
+\textbf{State Representation}\\
+\downarrow\\
+\textbf{Verification}\\
+\downarrow\\
+\textbf{Authorized Transition}\\
+\downarrow\\
+\textbf{Observation}\\
+\downarrow\\
+\Rthree{}\\
+\downarrow\\
+\textbf{Reverification}\\
+\downarrow\\
+\textbf{Truth-Constrained State}
+\end{array}
+}
+\]
+
+The lifecycle supports:
+
+\begin{enumerate}
+    \item creation;
+    \item validation;
+    \item formalization;
+    \item testing;
+    \item deployment;
+    \item monitoring;
+    \item revision;
+    \item supersession;
+    \item archival.
+\end{enumerate}
+
+No revision shall silently erase historical provenance.
+
+% ============================================================
+\section{Canonical Derivation Architecture}
+% ============================================================
+
+The canonical specification is the semantic source for all
+authorized derivative artifacts.
+
+\[
+\boxed{
+\Spec
+\longrightarrow
+\begin{cases}
+\Spec_{\mathrm{Lean}}\\
+\Spec_{\mathrm{JSONL}}\\
+\Spec_{\mathrm{CodeOcean}}\\
+\Spec_{\mathrm{Blockchain}}
+\end{cases}
+}
+\]
+
+Each derivative has a distinct representational function.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{p{0.22\textwidth}p{0.68\textwidth}}
+\toprule
+\textbf{Representation} & \textbf{Function}\\
+\midrule
+Lean 4 &
+Formal representation of definitions, propositions, structures,
+and proofs subject to the formalization.\\[0.5em]
+
+JSONL &
+Machine-readable serialization of canonical definitions,
+relationships, examples, obligations, and metadata.\\[0.5em]
+
+Code Ocean &
+Executable reproducibility environment for defined computational
+procedures, experiments, tests, and verification capsules.\\[0.5em]
+
+Blockchain &
+Cryptographic anchoring and provenance of canonical versions,
+digests, attestations, and authorized state records.\\
+\bottomrule
+\end{tabular}
+\caption{Authorized derivative representations}
+\end{table}
+
+No derivative becomes authoritative merely because it is
+executable, immutable, computationally convenient, or externally
+distributed.
+
+Authority remains with the canonical semantic specification and
+its authorized source.
+
+% ============================================================
+\section{Semantic Preservation}
+% ============================================================
+
+Let:
+
+\[
+\Sem(X)
+\]
+
+denote the semantic content of representation $X$ within its
+declared scope.
+
+For an exact derivative:
+
+\[
+\boxed{
+\Sem(D_i)\equiv\Sem(\Spec)
+}
+\]
+
+within the applicable representational domain.
+
+If exact equivalence cannot be established, the relationship shall
+be explicitly classified as one of:
+
+\begin{enumerate}
+    \item exact representation;
+    \item structure-preserving representation;
+    \item projection;
+    \item approximation;
+    \item unresolved mapping.
+\end{enumerate}
+
+An unresolved mapping shall not be represented as an established
+equivalence.
+
+% ============================================================
+\section{Reproducibility}
+% ============================================================
+
+Let:
+
+\[
+J=(I,R,V,E)
+\]
+
+represent:
+
+\begin{align*}
+I &= \text{canonical inputs},\\
+R &= \text{applicable rules},\\
+V &= \text{versions},\\
+E &= \text{declared execution conditions}.
+\end{align*}
+
+A reproducible verification process satisfies:
+
+\[
+\boxed{
+J_1\equiv J_2
+\Rightarrow
+\Verify(J_1)=\Verify(J_2)
+}
+\]
+
+within the declared equivalence conditions.
+
+Reproducibility requires, where applicable:
+
+\begin{enumerate}
+    \item fixed input versions;
+    \item fixed rule versions;
+    \item explicit dependencies;
+    \item explicit arithmetic semantics;
+    \item explicit environmental assumptions;
+    \item deterministic execution where required;
+    \item preserved provenance;
+    \item reproducible test procedures.
+\end{enumerate}
+
+A result that cannot be reproduced from its declared conditions
+shall not be represented as fully reproducible.
+
+% ============================================================
+\section{Verification and Fail-Closed Semantics}
+% ============================================================
+
+For:
+
+\[
+\Inv=\{I_1,I_2,\ldots,I_n\},
+\]
+
+let:
+
+\[
+I_i(S)\in
+\{
+\mathrm{true},
+\mathrm{false},
+\mathrm{unknown}
+\}.
+\]
+
+Then:
+
+\[
+\boxed{
+\Verify(S,\Law)=\Accept
+}
+\]
+
+only when every mandatory applicable invariant is established as
+true and all other mandatory verification conditions are
+satisfied.
+
+If:
+
+\[
+\exists i:
+I_i(S)=\mathrm{false},
+\]
+
+then:
+
+\[
+\boxed{
+\Verify(S,\Law)=\Reject.
+}
+\]
+
+If:
+
+\[
+\exists i:
+I_i(S)=\mathrm{unknown},
+\]
+
+for a mandatory applicable condition, then:
+
+\[
+\boxed{
+\Verify(S,\Law)=\Unknown.
+}
+\]
+
+Thus:
+
+\[
+\boxed{
+\Unknown\not\Rightarrow\Accept
+}
+\]
+
+and:
+
+\[
+\boxed{
+\Reject\not\equiv\Unknown.
+}
+\]
+
+An affirmative violation and an inability to establish
+compliance are distinct states.
+
+% ============================================================
+\section{Evidence and Provenance}
+% ============================================================
+
+The provenance chain may be represented as:
+
+\[
+\boxed{
+\text{Source}
+\rightarrow
+\text{Authority}
+\rightarrow
+\text{Interpretation}
+\rightarrow
+\text{Formalization}
+\rightarrow
+\text{Implementation}
+\rightarrow
+\text{Execution}
+\rightarrow
+\text{Result}
+}
+\]
+
+Each transformation shall be identifiable.
+
+Where applicable, provenance shall contain:
+
+\begin{enumerate}
+    \item source identifier;
+    \item authority;
+    \item version;
+    \item timestamp;
+    \item transformation identifier;
+    \item canonical digest;
+    \item derivative digest;
+    \item execution environment;
+    \item verification result.
+\end{enumerate}
+
+A digest shall only be represented when actually computed.
+
+No fabricated hash or provenance value is permissible.
+
+% ============================================================
+\section{Contradiction and Defect Handling}
+% ============================================================
+
+Contradictory conditions shall not be silently reconciled by
+implementation preference.
+
+If:
+
+\[
+I_a(S)=\mathrm{true}
+\]
+
+and:
+
+\[
+I_b(S)=\mathrm{false},
+\]
+
+then the state cannot simultaneously satisfy both invariants.
+
+Where contradictory authoritative sources exist, the canonical
+state shall preserve the contradiction until an authorized
+resolution rule is established.
+
+The canonical defect path is:
+
+\[
+\boxed{
+\text{Defect}
+\rightarrow
+\text{Explicit State}
+\rightarrow
+\Rthree{}
+\rightarrow
+\text{Resolution}
+\rightarrow
+\text{Reverification}.
+}
+\]
+
+This prevents implementation behavior from becoming an
+undocumented substitute for semantic resolution.
+
+% ============================================================
+\section{Unknown and Obligation States}
+% ============================================================
+
+A canonical verification process shall distinguish:
+
+\[
+\boxed{
+\text{TRUE},
+\quad
+\text{FALSE},
+\quad
+\text{UNKNOWN},
+\quad
+\Obligation
+}
+\]
+
+where:
+
+\[
+\Obligation
+\]
+
+denotes a required condition that has not yet been established.
+
+Therefore:
+
+\[
+\boxed{
+\Obligation\neq\text{Truth}.
+}
+\]
+
+Likewise:
+
+\[
+\boxed{
+\Unknown\neq\text{Truth}.
+}
+\]
+
+A non-consequential process may continue analysis while an
+obligation remains unresolved.
+
+A consequential acceptance shall require satisfaction of every
+mandatory obligation applicable to that acceptance.
+
+% ============================================================
+\section{Formal Law and Machine Law}
+% ============================================================
+
+The transformation from normative source to machine-verifiable
+predicate is:
+
+\[
+\boxed{
+\begin{gathered}
+\text{Normative Source}
+\rightarrow
+\text{Canonical Interpretation}
+\rightarrow
+\text{Formal Rule}
+\rightarrow\\
+\text{Invariant}
+\rightarrow
+\text{Executable Predicate}
+\end{gathered}
+}
+\]
+
+For a particular invariant:
+
+\[
+I:S\rightarrow\{\mathrm{true},\mathrm{false},\mathrm{unknown}\}.
+\]
+
+A deterministic implementation of $I$ may provide repeatable
+evaluation.
+
+However:
+
+\[
+\boxed{
+\text{Deterministic Computation}
+\neq
+\text{Semantic Correctness}.
+}
+\]
+
+Semantic correctness depends upon preservation of:
+
+\[
+\Purpose,\;
+Authority,\;
+\Evidence,\;
+\Inv,\;
+\Law,\;
+\Prov.
+\]
+
+This distinction is foundational.
+
+% ============================================================
+\section{Legal Validity and Formal Verifiability}
+% ============================================================
+
+Machine-verifiable representation and legal validity are distinct
+properties.
+
+The architecture distinguishes:
+
+\[
+\boxed{
+\text{Normative Authority}
+}
+\]
+
+from:
+
+\[
+\boxed{
+\text{Formal Representation}
+}
+\]
+
+from:
+
+\[
+\boxed{
+\text{Machine Verification}.
+}
+\]
+
+Formalizing a rule does not independently create its legal
+authority.
+
+Likewise, a machine-verifiable predicate does not independently
+establish that the underlying normative source was legitimately
+authorized.
+
+The canonical chain is therefore:
+
+\[
+\boxed{
+\text{Authorized Normative Source}
+\rightarrow
+\text{Canonical Representation}
+\rightarrow
+\text{Formal Verification}
+}
+\]
+
+rather than:
+
+\[
+\text{Machine Output}
+\rightarrow
+\text{Normative Authority}.
+\]
+
+This distinction preserves the boundary between law's source of
+authority and the computational mechanism used to evaluate its
+formal conditions.
+
+% ============================================================
+\section{Cross-Domain Law Envelope}
+% ============================================================
+
+Let:
+
+\[
+\Domain=\{D_1,D_2,\ldots,D_n\}
+\]
+
+be a collection of domains.
+
+Each domain may define:
+
+\[
+\Law_i.
+\]
+
+The common MVL envelope is:
+
+\[
+\boxed{
+\mathfrak{L}
+=
+\left\{
+\Law_i
+\mid
+D_i\in\Domain
+\right\}
+}
+\]
+
+subject to common structural requirements:
+
+\[
+\Purpose,\;
+Authority,\;
+\Inv,\;
+State,\;
+\Verify,\;
+Prov,\;
+\delta.
+\]
+
+The envelope does not impose identical substantive rules.
+
+It imposes a common representation and verification discipline.
+
+Therefore:
+
+\[
+\boxed{
+\text{Universal Structure}
++
+\text{Domain-Specific Substance}
+=
+\text{Cross-Domain MVL}.
+}
+\]
+
+% ============================================================
+\section{Machine-Verifiable Safety}
+% ============================================================
+
+Safety may be represented as a formally defined invariant rather
+than solely as an after-the-fact assessment.
+
+For a safety invariant:
+
+\[
+I_S(S)=\mathrm{true}
+\]
+
+indicates that the specified safety condition is satisfied for
+state $S$.
+
+A Safety Asset Class (\SAC{}) representation may classify
+verified safety properties as explicit attributes of a state.
+
+The canonical relationship is:
+
+\[
+\boxed{
+\Purpose
+\rightarrow
+I_S
+\rightarrow
+\Verify
+\rightarrow
+\text{Verified Safety State}.
+}
+\]
+
+Safety verification remains distinct from economic value,
+normative authority, or other classifications unless an explicit
+canonical relationship is established.
+
+% ============================================================
+\section{Security and Adversarial Integrity}
+% ============================================================
+
+An MVL implementation shall account for integrity conditions
+including, where applicable:
+
+\begin{enumerate}
+    \item hidden state;
+    \item altered provenance;
+    \item version substitution;
+    \item numerical overflow;
+    \item numerical underflow;
+    \item division by zero;
+    \item malformed input;
+    \item ambiguous interpretation;
+    \item unauthorized rule modification;
+    \item stale rule versions;
+    \item dependency substitution;
+    \item environment drift;
+    \item inconsistent state synchronization.
+\end{enumerate}
+
+Where a mandatory integrity condition cannot be established:
+
+\[
+\boxed{
+\text{Integrity Unknown}
+\Rightarrow
+\Verify\neq\Accept.
+}
+\]
+
+% ============================================================
+\section{Canonical Versioning and Supersession}
+% ============================================================
+
+Every canonical release shall have an immutable version
+identifier.
+
+A canonical release may be represented as:
+
+\[
+C_v=(id,v,h,t,a),
+\]
+
+where:
+
+\begin{align*}
+id &= \text{canonical identity},\\
+v &= \text{version},\\
+h &= \text{canonical digest},\\
+t &= \text{publication or activation time},\\
+a &= \text{authorized authority}.
+\end{align*}
+
+A subsequent version:
+
+\[
+C_{v+1}
+\]
+
+shall preserve a traceable relationship to:
+
+\[
+C_v.
+\]
+
+Supersession shall not erase historical provenance.
+
+A new version shall identify whether its change is:
+
+\begin{enumerate}
+    \item semantic;
+    \item structural;
+    \item representational;
+    \item editorial;
+    \item corrective.
+\end{enumerate}
+
+% ============================================================
+\section{Blockchain Provenance}
+% ============================================================
+
+Blockchain technology may provide an external cryptographic
+provenance layer.
+
+The relationship is:
+
+\[
+\boxed{
+\text{Canonical State}
+\rightarrow
+\text{Canonical Digest}
+\rightarrow
+\text{Blockchain Record}.
+}
+\]
+
+The blockchain record may establish evidence that a specified
+digest was anchored in a specified ledger state.
+
+It does not independently establish semantic correctness.
+
+Therefore:
+
+\[
+\boxed{
+\text{Blockchain Immutability}
+\neq
+\text{Semantic Truth}.
+}
+\]
+
+Blockchain anchoring is consequently a provenance function, not
+the canonical source of normative meaning.
+
+% ============================================================
+\section{Lean 4 Formalization}
+% ============================================================
+
+Lean 4 may serve as a formal representation environment for
+canonical definitions, structures, propositions, and proofs.
+
+The derivation is:
+
+\[
+\boxed{
+\Spec
+\rightarrow
+\Spec_{\mathrm{Lean}}.
+}
+\]
+
+The canonical relationship is:
+
+\[
+\text{Canonical Definition}
+\rightarrow
+\text{Formal Proposition}
+\rightarrow
+\text{Formal Proof}.
+\]
+
+Where a canonical proposition cannot be formalized or proven under
+the declared assumptions, the discrepancy shall be represented
+explicitly.
+
+A failed proof shall not be represented as a successful proof.
+
+A proof of a formalized proposition shall not automatically be
+interpreted as proof of an unstated proposition outside that
+formalization.
+
+% ============================================================
+\section{JSONL Canonical Representation}
+% ============================================================
+
+JSONL may provide a machine-readable serialization of canonical
+semantic objects.
+
+A canonical JSONL record should preserve, where applicable:
+
+\begin{enumerate}
+    \item canonical identifier;
+    \item object type;
+    \item canonical definition;
+    \item dependencies;
+    \item invariants;
+    \item authority;
+    \item provenance;
+    \item version;
+    \item verification status;
+    \item obligations;
+    \item relationships to other canonical records.
+\end{enumerate}
+
+The JSONL representation shall be derived from the canonical
+semantic root.
+
+It shall not introduce a new normative definition merely because
+the serialization format makes such a definition convenient.
+
+% ============================================================
+\section{Code Ocean Reproducibility Capsules}
+% ============================================================
+
+A Code Ocean capsule or equivalent executable environment may
+serve as a reproducibility realization of a defined canonical
+computational procedure.
+
+The capsule shall identify, where applicable:
+
+\begin{enumerate}
+    \item source code;
+    \item dependencies;
+    \item runtime;
+    \item inputs;
+    \item tests;
+    \item expected results;
+    \item actual results;
+    \item version;
+    \item provenance.
+\end{enumerate}
+
+The capsule is therefore:
+
+\[
+\boxed{
+\text{Executable Evidence of a Defined Canonical Procedure}.
+}
+\]
+
+An executable result shall not be generalized beyond its declared
+test domain without additional evidence.
+
+% ============================================================
+\section{Canonical Conformance}
+% ============================================================
+
+An implementation conforms to this specification within a
+declared scope when it demonstrates:
+
+\begin{enumerate}
+    \item explicit purpose;
+    \item explicit authority;
+    \item explicit invariants;
+    \item defined state;
+    \item defined verification semantics;
+    \item provenance;
+    \item reproducibility;
+    \item semantic preservation;
+    \item fail-closed handling of unresolved mandatory conditions;
+    \item version control;
+    \item auditable derivation.
+\end{enumerate}
+
+A conformance claim shall identify:
+
+\begin{enumerate}
+    \item the canonical version;
+    \item the derivative representation;
+    \item the applicable domain;
+    \item the verification scope;
+    \item the tested conditions;
+    \item any unresolved obligations.
+\end{enumerate}
+
+No implementation shall claim universal conformance solely from
+conformance within a limited computational domain.
+
+% ============================================================
+\section{Canonical Derivation Rule}
+% ============================================================
+
+The central derivation rule is:
+
+\[
+\boxed{
+\parbox{0.85\textwidth}{\centering\textbf{
+Every derivative representation shall be derivable from a
+canonical semantic specification whose purpose, authority,
+invariants, provenance, state model, and verification semantics
+are explicit.
+}}
+}
+\]
+
+Accordingly:
+
+\[
+\boxed{
+\Spec
+\rightarrow
+\Spec_{\mathrm{Lean}}
+}
+\]
+
+\[
+\boxed{
+\Spec
+\rightarrow
+\Spec_{\mathrm{JSONL}}
+}
+\]
+
+\[
+\boxed{
+\Spec
+\rightarrow
+\Spec_{\mathrm{CodeOcean}}
+}
+\]
+
+\[
+\boxed{
+\Spec
+\rightarrow
+\Spec_{\mathrm{Blockchain}}
+}
+\]
+
+These are controlled derivations rather than independent sources
+of meaning.
+
+% ============================================================
+\section{Derivative Reconciliation Loop}
+% ============================================================
+
+Every derivative representation may be evaluated against the
+canonical semantic root.
+
+The reconciliation loop is:
+
+\[
+\boxed{
+\Spec
+\rightarrow
+D_i
+\rightarrow
+\text{Derivative Verification}
+\rightarrow
+\begin{cases}
+\text{Conformant}\\
+\text{Defective}\\
+\text{Unresolved}
+\end{cases}
+}
+\]
+
+If a derivative is defective or unresolved:
+
+\[
+\boxed{
+D_i
+\rightarrow
+\Rthree
+\rightarrow
+\Spec'
+\rightarrow
+D_i'
+}
+\]
+
+shall be used to reconcile the discrepancy.
+
+A derivative shall not independently rewrite the canonical source
+in order to conceal a discrepancy.
+
+If the discrepancy reveals an error in the canonical semantic
+root, the canonical root may be revised through the authorized
+R³ process.
+
+This creates the controlled refinement relation:
+
+\[
+\boxed{
+\Spec
+\leftrightarrow
+\text{Formal}
+\leftrightarrow
+\text{Executable}
+\leftrightarrow
+\text{Observed}
+}
+\]
+
+with \Rthree{} governing semantic reconciliation.
+
+% ============================================================
+\section{Canonical Verification Loop}
+% ============================================================
+
+The complete architecture is:
+
+\[
+\boxed{
+\begin{aligned}
+&\textbf{BEGIN WITH PURPOSE}\\
+&\downarrow\\
+&\text{Establish Authority}\\
+&\downarrow\\
+&\text{Collect Evidence}\\
+&\downarrow\\
+&\Rthree{}\\
+&\downarrow\\
+&\text{Identify Invariants}\\
+&\downarrow\\
+&\MDM\\
+&\downarrow\\
+&\text{Formalize Law}\\
+&\downarrow\\
+&\text{Represent State}\\
+&\downarrow\\
+&\text{Verify}\\
+&\downarrow\\
+&\text{Authorize Transition}\\
+&\downarrow\\
+&\text{Observe}\\
+&\downarrow\\
+&\Rthree{}\\
+&\downarrow\\
+&\text{Resolve Material Defects}\\
+&\downarrow\\
+&\text{Reverify}\\
+&\downarrow\\
+&\boxed{\textbf{END IN TRUTH}}
+\end{aligned}
+}
+\]
+
+The architecture is recursive because observation can expose
+defects that were not established at an earlier state.
+
+The recursive process terminates at the declared fixed-point
+condition:
+
+\[
+\boxed{
+\Rthree(C^{*})
+\equiv_{\mathrm{can}}
+C^{*}
+}
+\]
+
+subject to the declared verification domain.
+
+% ============================================================
+\section{Canonical Mathematical Closure}
+% ============================================================
+
+The complete canonical object may be represented as:
+
+\[
+\boxed{
+C=
+(
+\Purpose,
+\Authority,
+\Evidence,
+\Inv,
+\Law,
+\State,
+\Verify,
+\Prov,
+v
+)
+}
+\]
+
+and the refinement operator as:
+
+\[
+\boxed{
+\Rthree:
+\mathfrak{C}\rightarrow\mathfrak{C}.
+}
+\]
+
+The canonical fixed point is:
+
+\[
+\boxed{
+C^{*}
+=
+\Rthree(C^{*})
+}
+\]
+
+under canonical semantic equivalence.
+
+The truth-constrained state produced by the specification is:
+
+\[
+\boxed{
+S^{*}
+\in
+\State
+}
+\]
+
+such that:
+
+\[
+\boxed{
+\Verify(S^{*},\Law)=\Accept
+}
+\]
+
+within the declared verification domain.
+
+The two fixed points shall not be conflated:
+
+\[
+\boxed{
+\text{Canonical Fixed Point}
+\neq
+\text{Verified Runtime State}.
+}
+\]
+
+The former concerns semantic specification convergence.
+
+The latter concerns admissibility of a particular state.
+
+% ============================================================
+\section{Foundational Principles}
+% ============================================================
+
+The specification is governed by the following principles:
+
+\begin{enumerate}
+    \item \textbf{Purpose precedes consequential computation.}
+    \item \textbf{Authorized purpose precedes normative formalization.}
+    \item \textbf{\Rthree{} recursively pursues absolute truth.}
+    \item \textbf{\MDM{} provides the structural mathematical reference.}
+    \item \textbf{Explicit invariants replace undocumented assumptions.}
+    \item \textbf{Provenance preserves the origin and continuity of meaning.}
+    \item \textbf{Reproducibility makes verification independently examinable.}
+    \item \textbf{Determinism applies where deterministic verification is specified.}
+    \item \textbf{Unknown is not acceptance.}
+    \item \textbf{Rejection and non-verification are distinct states.}
+    \item \textbf{No derivative may silently alter canonical meaning.}
+    \item \textbf{No implementation may silently substitute its own authority.}
+    \item \textbf{Cross-domain structure does not require identical substantive rules.}
+    \item \textbf{Machine verification does not independently create normative authority.}
+    \item \textbf{Canonical convergence is semantic, not merely textual.}
+    \item \textbf{Refinement stops when no material canonical defect remains.}
+\end{enumerate}
+
+% ============================================================
+\section{Canonical Integrity Rules}
+% ============================================================
+
+The following rules constitute the minimum semantic integrity
+conditions of the architecture.
+
+\begin{enumerate}
+    \item
+    \[
+    \boxed{
+    \text{No derivative may contain more authority than its source.}
+    }
+    \]
+
+    \item
+    \[
+    \boxed{
+    \text{No implementation may silently change canonical meaning.}
+    }
+    \]
+
+    \item
+    \[
+    \boxed{
+    \text{No unverified condition may be represented as verified.}
+    }
+    \]
+
+    \item
+    \[
+    \boxed{
+    \text{No unresolved contradiction may be silently converted into a rule.}
+    }
+    \]
+
+    \item
+    \[
+    \boxed{
+    \text{No fabricated provenance may be represented as evidence.}
+    }
+    \]
+
+    \item
+    \[
+    \boxed{
+    \text{No semantic convergence claim may be made without a declared comparison relation.}
+    }
+    \]
+\end{enumerate}
+
+% ============================================================
+\section{Final Canonical Statement}
+% ============================================================
+
+Machine-Verifiable Law is the formal representation of
+authorized normative intent, applicable law, invariants,
+evidence, provenance, states, and authorized transitions in a
+form that permits explicit, reproducible, auditable, and
+appropriately deterministic verification within a declared
+domain.
+
+Its governing architecture is:
+
+\[
+\boxed{
+\Purpose
+\rightarrow
+\Authority
+\rightarrow
+\Rthree{}
+\rightarrow
+\MDM
+\rightarrow
+\Inv
+\rightarrow
+\Law
+\rightarrow
+\State
+\rightarrow
+\Verify
+\rightarrow
+\Truth
+}
+\]
+
+Its governing semantic-root principle is:
+
+\[
+\boxed{
+\begin{gathered}
+\textbf{ONE CANONICAL SEMANTIC ROOT}\\
+\downarrow\\
+\textbf{MANY CONTROLLED REPRESENTATIONS}
+\end{gathered}
+}
+\]
+
+Its governing refinement principle is:
+
+\[
+\boxed{
+\textbf{
+R}^{3}
+=
+\textbf{RECURSIVE PURSUIT OF ABSOLUTE TRUTH}
+}
+\]
+
+Its governing mathematical principle is:
+
+\[
+\boxed{
+\textbf{
+MDM PROVIDES THE COMMON STRUCTURAL REFERENCE
+}
+}
+\]
+
+Its governing integrity principle is:
+
+\[
+\boxed{
+\textbf{
+NO SILENT SEMANTIC DRIFT
+}
+}
+\]
+
+Its governing verification principle is:
+
+\[
+\boxed{
+\textbf{
+NO VERIFIED STATE WITHOUT VERIFIABLE CONDITIONS
+}
+}
+\]
+
+Its governing convergence condition is:
+
+\[
+\boxed{
+\boldsymbol{
+\Rthree(C^{*})
+\equiv_{\mathrm{can}}
+C^{*}
+}
+}
+\]
+
+and its governing direction is:
+
+\[
+\boxed{
+\text{\Large\textbf{BEGIN WITH PURPOSE. END IN TRUTH.}}
+}
+\]
+
+\vfill
+
+\begin{center}
+\textit{
+Purpose establishes direction.\\
+Authority establishes normative source.\\
+R\textsuperscript{3} establishes recursive pursuit.\\
+MDM establishes structural mathematics.\\
+Invariants establish admissibility.\\
+Formalization establishes representation.\\
+Verification establishes state.\\
+Provenance establishes continuity.\\
+Reproducibility establishes independent examinability.\\
+Truth establishes the fixed point.
+}
+\end{center}
+
+\end{document}
