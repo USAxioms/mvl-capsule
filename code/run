@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# Code Ocean entry point. Runs the MVL test suite and writes results to /results.
+set -euo pipefail
+cd "$(dirname "$0")"
+RESULTS="${MVL_RESULTS_DIR:-/results}"
+DATA="${MVL_DATA_DIR:-/data}"
+[ -d "$RESULTS" ] || RESULTS="../results"
+[ -d "$DATA" ] || DATA="../data"
+export MVL_DATA_DIR="$DATA"
+mkdir -p "$RESULTS"
+
+echo "== MVL capsule: BEGIN WITH PURPOSE. END IN TRUTH."
+python3 --version
+status=0
+python3 run_tests.py "$RESULTS" || status=$?
+python3 -m mvl.report "$DATA" "$RESULTS/verification_report.json" "$RESULTS/test_summary.json"
+# Second, independent build of the deterministic core: must match exactly.
+python3 -m mvl.report "$DATA" "$RESULTS/verification_report_rerun.json" "$RESULTS/test_summary.json" > /dev/null
+python3 - "$RESULTS" <<'PY'
+import json, sys
+r = sys.argv[1]
+a = json.load(open(f"{r}/verification_report.json"))["core_sha256"]
+b = json.load(open(f"{r}/verification_report_rerun.json"))["core_sha256"]
+print("reproducibility:", "MATCH" if a == b else "MISMATCH", a)
+sys.exit(0 if a == b else 1)
+PY
+rm -f "$RESULTS/verification_report_rerun.json"
+echo "== results written to $RESULTS"
+exit $status
